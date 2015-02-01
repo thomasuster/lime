@@ -24,6 +24,8 @@ script:
   - haxelib run lime rebuild linux -64
   - haxelib run lime rebuild tools
   - haxelib run lime create HelloWorld
-  
+  - cd HelloWorld
+  - haxelib run lime test ios
+
 notifications:
   slack: openfl:sBwVO0kgB7EuWLYzZzUezVIz
