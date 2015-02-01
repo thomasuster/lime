@@ -23,6 +23,7 @@ script:
   - haxelib run lime rebuild linux -64 -Dlegacy
   - haxelib run lime rebuild linux -64
   - haxelib run lime rebuild tools
-
+  - haxelib run lime create HelloWorld
+  
 notifications:
   slack: openfl:sBwVO0kgB7EuWLYzZzUezVIz
