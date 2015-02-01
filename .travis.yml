@@ -1,7 +1,7 @@
 os:
   - osx
 
-language: c++
+language: objective-c
 
 before_install:
   - "export DISPLAY=:99.0"
