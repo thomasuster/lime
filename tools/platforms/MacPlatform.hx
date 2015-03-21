@@ -34,7 +34,9 @@ class MacPlatform extends PlatformTarget {
 	
 	
 	public function new (command:String, _project:HXProject, targetFlags:Map <String, String> ) {
-		
+
+        for (i in 0...100)
+            Sys.println("HELLO WORLD");
 		super (command, _project, targetFlags);
 		
 		for (architecture in project.architectures) {
@@ -124,30 +126,35 @@ class MacPlatform extends PlatformTarget {
 			}
 			
 			if (!project.targetFlags.exists ("static")) {
-				
+                Sys.println('1!!!');
 				ProcessHelper.runCommand ("", "haxe", haxeArgs);
+                Sys.println('2!!!');
 				CPPHelper.compile (project, targetDirectory + "/obj", flags);
-				
+                Sys.println('3!!!');
 				FileHelper.copyFile (targetDirectory + "/obj/ApplicationMain" + (project.debug ? "-debug" : ""), executablePath);
 				
 			} else {
-				
+
+                Sys.println('4!!!');
 				ProcessHelper.runCommand ("", "haxe", haxeArgs.concat ([ "-D", "static_link" ]));
+                Sys.println('5!!!');
 				CPPHelper.compile (project, targetDirectory + "/obj", flags.concat ([ "-Dstatic_link" ]));
+                Sys.println('6!!!');
 				CPPHelper.compile (project, targetDirectory + "/obj", flags, "BuildMain.xml");
-				
+                Sys.println('7!!!');
 				FileHelper.copyFile (targetDirectory + "/obj/Main" + (project.debug ? "-debug" : ""), executablePath);
-				
+                Sys.println('8!!!');
 			}
 			
 		}
-		
+
+        Sys.println('chmod!!!');
 		if (PlatformHelper.hostPlatform != Platform.WINDOWS && targetType != "nodejs") {
 			
 			ProcessHelper.runCommand ("", "chmod", [ "755", executablePath ]);
 			
 		}
-		
+        Sys.println('post chmod!!!');
 	}
 	
 	
